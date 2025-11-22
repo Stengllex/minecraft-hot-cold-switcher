@@ -13,11 +13,7 @@ https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
 # 2. Authenticate Locally
 
-You have **two options** to authenticate Terraform locally:
-
----
-
-## Option A — Use Your Personal Google Login (Simplest)
+Use Your Personal Google Login (Simplest)
 
 Use this when developing locally.
 
@@ -53,8 +49,17 @@ gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
 You may refine permissions later.
 
 ---
+# 4. Environment Variables
 
-# 4. Run Terraform Locally
+Recommended local env shell exports:
+
+```sh
+export GOOGLE_PROJECT_ID="your-project-id"
+```
+
+---
+
+# 5. Run Terraform Locally
 
 ### Initialize
 
@@ -72,36 +77,9 @@ terraform plan \
 ### Apply
 
 ```sh
-terraform apply
+terraform apply -var="project_id=$GOOGLE_PROJECT_ID"
 ```
 
 ---
 
-# 5. Environment Variables
-
-Recommended local env shell exports:
-
-```sh
-export GOOGLE_PROJECT_ID="your-project-id"
-```
-
----
-
-# 6. Troubleshooting
-
-### "No credential found"
-
-Run:
-
-```sh
-gcloud auth application-default login
-```
-
-### "Permission denied"
-
-Check service account roles:
-
-```sh
-gcloud projects get-iam-policy YOUR_PROJECT_ID
-```
-
+Step 1 — Stop the Hot VM
