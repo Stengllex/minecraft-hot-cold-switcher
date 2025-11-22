@@ -1,0 +1,52 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: Terraform Init & Apply
+    runs-on: ubuntu-latest
+
+    env:
+      TF_VAR_project_id: ${{ secrets.GCP_PROJECT_ID }}
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/gcp-key.json
+
+    steps:
+    # 1️⃣ Checkout repository
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    # 2️⃣ Set up Google Cloud SDK
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        version: '426.0.0'
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+    # 3️⃣ Set up Terraform
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.6.0
+
+    # 4️⃣ Initialize Terraform
+    - name: Terraform Init
+      run: terraform -chdir=terraform init
+
+    # 5️⃣ Validate Terraform
+    - name: Terraform Validate
+      run: terraform -chdir=terraform validate
+
+    # 6️⃣ Terraform Plan
+    - name: Terraform Plan
+      run: terraform -chdir=terraform plan -var "project_id=${{ secrets.GCP_PROJECT_ID }}" -out=tfplan
+
+    # 7️⃣ Terraform Apply
+    - name: Terraform Apply
+      run: terraform -chdir=terraform apply -auto-approve tfplan
+

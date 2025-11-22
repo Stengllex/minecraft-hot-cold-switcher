@@ -5,12 +5,12 @@ variable "project_id" {
 
 variable "region" {
   type    = string
-  default = "europe-west3"
+  default = "europe-west4"
 }
 
 variable "zone" {
   type    = string
-  default = "europe-west3-c"
+  default = "europe-west4-a"
 }
 
 variable "network_name" {
@@ -43,3 +43,7 @@ variable "world_disk_size_gb" {
   default = 50
 }
 
+variable "image" {
+  type    = string
+  default = "debian-cloud/debian-12"
+}

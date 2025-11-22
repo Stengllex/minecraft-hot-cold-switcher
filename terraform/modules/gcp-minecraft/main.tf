@@ -10,17 +10,9 @@ resource "google_compute_instance" "mc_vm" {
 
   boot_disk {
     initialize_params {
-      size = var.boot_disk_size
-      type = "pd-ssd"
-    }
-  }
-
-  dynamic "attached_disk" {
-    for_each = var.attached_disk_ids
-    content {
-      source      = attached_disk.value
-      mode        = "READ_WRITE"
-      auto_delete = false
+      image = var.image
+      size  = var.boot_disk_size
+      type  = "hyperdisk-balanced"
     }
   }
 
