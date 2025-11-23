@@ -15,8 +15,6 @@ https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
 Use Your Personal Google Login (Simplest)
 
-Use this when developing locally.
-
 ```sh
 gcloud auth login
 gcloud auth application-default login
@@ -80,6 +78,3 @@ terraform plan \
 terraform apply -var="project_id=$GOOGLE_PROJECT_ID"
 ```
 
----
-
-Step 1 — Stop the Hot VM
