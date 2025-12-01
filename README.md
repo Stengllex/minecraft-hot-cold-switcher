@@ -1,6 +1,6 @@
 # minecraft-hot-cold-switcher
 
-⚠️ Status: WORK IN PROGRESS — NOT READY FOR PRODUCTION USE
+⚠️ Status: WORK IN PROGRESS — NOT READY FOR PRODUCTION USE - Vibe coded
 This project is currently under active development.
 Some features may be incomplete, unstable, or missing entirely.
 Feel free to explore, contribute, or follow the progress — but do not expect a fully working setup yet.
